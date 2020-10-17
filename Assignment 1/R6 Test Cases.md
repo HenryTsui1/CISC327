@@ -7,6 +7,7 @@ test_user = User(
     password=generate_password_hash('test_frontend')
 )
 ```
+```
 test_ticket = Ticket(
     owner='test_frontend@test.com',
     name='test_ticket_yo',
