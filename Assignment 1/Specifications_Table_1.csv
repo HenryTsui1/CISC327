@@ -1,0 +1,109 @@
+Specification,Test case ID,Purpose
+"If the user hasn't logged in, show the login page.",R1.1,To make sure the /login page is open if the user isn't logged in.
+The login page has a message that by default says 'please login'.,R1.2,The login page has the element 'please login'.
+"If the user has logged in, redirect to the user profile page.",R1.3,To make sure / is opened if user goes to /login page and is logged in.
+The login page provides a login form which requests two fields: email and password.,R1.4,To make sure the /login page has the email and passsword element.
+The login form can be submitted as a POST request to the current URL (/login).,R1.5,To check that the information ca nbe submitted as a post request.
+Email and password both cannot be empty.,R1.6.1,To make sure if the username and password isn't empty it works.
+Email and password both cannot be empty.,R1.6.2,If the passsword field is empty that there will be an error.
+Email and password both cannot be empty.,R1.6.3,If the username field is empty that there will be an error.
+Email has to follow addr-spec defined in RFC 5322.,R1.7.1,If the email follows the RFC 5322 there won't be an error.
+Email has to follow addr-spec defined in RFC 5322.,R1.7.2,If the email doesn't follows the RFC 5322 there will be an error.
+"Password has to meet the required complexity: minimum length 6, at least one upper case, at least one lower case, and at least one special character.",R1.8.1,If the password meets the required complexity there isn't an error.
+"Password has to meet the required complexity: minimum length 6, at least one upper case, at least one lower case, and at least one special character.",R1.8.2,If the password isn't of length 6 it shows an error.
+"Password has to meet the required complexity: minimum length 6, at least one upper case, at least one lower case, and at least one special character.",R1.8.3,If the password doesn't have at least one upper case letter it shows an error.
+"Password has to meet the required complexity: minimum length 6, at least one upper case, at least one lower case, and at least one special character.",R1.8.4,If the password doesn't have at least one lower case letter it shows an error.
+"Password has to meet the required complexity: minimum length 6, at least one upper case, at least one lower case, and at least one special character.",R1.8.5,If the password doesn't have at least one special character it shows an error.
+"For any formatting errors, render the login page and show the message 'email/password format is incorrect.'.",R1.9,If any of the errors are triggered in the prior cases the page shows the message 'email/password format is incorrect.'.
+"If email/password are correct, redirect to /.",R1.10,If the user exists the website directs to / page.
+"Otherwise, redict to /login and show message 'email/password combination incorrect'.",R1.11,If there is isn't a user the page will show the error 'email/password combination incorrect'.
+"If the user has logged in, redirect to the user profile page.",R2.1,To make sure / is opened if user goes to /register page and is logged in.
+"otherwise, show the user registration page",R2.2,To open /registration page if user isn't logged in.
+"the registration page shows a registration form requesting: email, user name, password, password2",R2.3,"To make sure the /regiatration page ahas the email, username, password and password2 elements."
+The registration form can be submitted as a POST request to the current URL (/register),R2.4,Making sure the registration form is able to be submmited as a post request.
+"Email, password, password2 all have to satisfy the same required as defined in R1.",R2.5.1,If all the fields are satisfied as defined in R1 is passes through.
+"Email, password, password2 all have to satisfy the same required as defined in R1.",R2.5.2,If email doesn't satisfy it causes an error.
+"Email, password, password2 all have to satisfy the same required as defined in R1.",R2.5.3,If password doesn't satisfy it causes an error.
+"Email, password, password2 all have to satisfy the same required as defined in R1.",R2.5.4,If password2 doesn't satisfy it causes an error.
+Password and password2 have to be exactly the same.,R2.6.1,If both passwords are the same no errors are shown.
+Password and password2 have to be exactly the same.,R2.6.2,If both passwords are not the same there is an error shown.
+"User name has to be non-empty, alphanumeric-only, and space allowed only if it is not the first or the last character.",R2.7.1,If username satifies all constraints it is acceptable.
+"User name has to be non-empty, alphanumeric-only, and space allowed only if it is not the first or the last character.",R2.7.2,If username is empty it shows an error.
+"User name has to be non-empty, alphanumeric-only, and space allowed only if it is not the first or the last character.",R2.7.3,If username is not alphanumeric-only it shows an error.
+"User name has to be non-empty, alphanumeric-only, and space allowed only if it is not the first or the last character.",R2.7.4,If there is a space in front of the username it shows an error.
+"User name has to be non-empty, alphanumeric-only, and space allowed only if it is not the first or the last character.",R2.7.5,If there is a space behind the username it shows an error.
+User name has to be longer than 2 characters and less than 20 characters.,R2.8.1,If the username is longer than 2 characters and shotter than 20 characters it is acceptable.
+User name has to be longer than 2 characters and less than 20 characters.,R2.8.2,If username has less than or equla to 2 characters an error is shown.
+User name has to be longer than 2 characters and less than 20 characters.,R2.8.3,"If username has 20 characters or longer, an error is shown."
+"For any formatting errors, redirect back to /login and show message '{} format is incorrect.'.format(the_corresponding_attribute)",R2.9,If any of the formatting test cases return an error the message '{} format is incorrect.'.format(the_corresponding_attribute) is shown.
+"If the email already exists, show message 'this email has been ALREADY used'",R2.10,If the email already exists the message 'this email has been ALREADY used'.
+"If no error regarding the inputs following the rules above, create a new user, set the balance to 5000, and go back to the /login page",R2.11,To check that if the email doesn't exists it creates a new user sets their balance to 5000 and goes back to /login page.
+"If the user is not logged in, redirect to login page",R3.1,"User is not logged in. Check that / redirects to login, "
+"This page shows a header 'Hi {}'.format(user.name), This page shows user balance, This page shows a logout link, pointing to /logout",R3.2,User is logged in. Check that / displays proper info is displayed and /logout works
+"This page lists all available tickets. Information including the quantity of each ticket, the owner's email, and the price, for tickets that are not expired.",R3.3,This verifies that ticket info is available after login
+"This page contains a form that a user can submit new tickets for sell. Fields: name, quantity, price, expiration date",R3.4.1,Verify that sell fields exist
+"This page contains a form that a user can submit new tickets for sell. Fields: name, quantity, price, expiration date",R3.4.2,Verify that sell fields can have data entered
+"This page contains a form that a user can buy new tickets. Fields: name, quantity",R3.5.1,Verify that buy fields exist 
+"This page contains a form that a user can buy new tickets. Fields: name, quantity",R3.5.2,Verify that buy fields can have info entered
+The ticket-selling form can be posted to /sell,R3.6,Verify that sell operation can be completed
+The ticket-selling form can be posted to /sell,R3.7,Verify that sell operation now visible to user 
+The ticket-buying form can be posted to /buy,R3.8.1,Verify that buy can be completed 
+The ticket-buying form can be posted to /buy,R3.8.2,Verify that bought tickets are visible to user
+"This page contains a form that a user can update existing tickets. Fields: name, quantity, price, expiration date",R3.9.1,Verify that update elements exist
+"This page contains a form that a user can update existing tickets. Fields: name, quantity, price, expiration date",R3.9.2,Verify that update elements can have info entered
+The ticket-update form can be posted to /update,R3.9.3,Verify that updated tickets now visible to user
+The name of the ticket has to be alphanumeric-only,R4.1.1,Check if the selling actions succeed when the ticket name is alphanumeric-only
+The name of the ticket has to be alphanumeric-only,R4.1.2,Check if the selling actions fail when the ticket name contains special characters
+The name of the ticket has to be alphanumeric-only,R4.1.3,Check if the selling actions fail when the ticket name contains a space as the first character
+The name of the ticket has to be alphanumeric-only,R4.1.4,Check if the selling actions fail when the ticket name contains a space as the last character
+The name of the ticket is no longer than 60 characters,R4.2.1,Check if the selling actions succeed when the ticket name is less than 60 characters
+The name of the ticket is no longer than 60 characters,R4.2.2,Check if the selling actions fail when the ticket name is more than 60 characters
+"The quantity of the tickets has to be more than 0, and less than or equal to 100",R4.3.1,Check if the selling actions succeed if the quantity of tickets is 10
+"The quantity of the tickets has to be more than 0, and less than or equal to 101",R4.3.2,Check if the selling actions fail if the quantity of tickets is 0
+"The quantity of the tickets has to be more than 0, and less than or equal to 102",R4.3.3,Check if the selling actions fail if the quantity of tickets is 100
+"Price has to be of range [10, 100]",R4.4.1,Check if the selling actions succeed if the ticket price is 10
+"Price has to be of range [10, 100]",R4.4.2,Check if the selling actions fail if the ticket price is 9
+"Price has to be of range [10, 100]",R4.4.3,Check if the selling actions succeed if the ticket price is 101
+Date must be given in the format YYYYMMDD,R4.5.1,Check if the selling actions succeed if the date is formatted correctly
+Date must be given in the format YYYYMMDD,R4.5.2,Check if the selling actions fail if the date is formatted incorrectly
+"For any errors, redirect back to / and show an error message",R4.6,Check if the selling actions fail that the user is redirected to / and an error message appears
+The added new ticket information will be posted on the user profile page,R4.7,Check if the selling actions function correctly and the ticket is displayed on the user profile page
+The name of the ticket has to be alphanumeric-only,R5.1.1,Check if the update actions succeed when the ticket name is alphanumeric-only
+The name of the ticket has to be alphanumeric-only,R5.1.2,Check if the update actions fail when the ticket name contains special characters
+The name of the ticket has to be alphanumeric-only,R5.1.3,Check if the update actions fail when the ticket name contains a space as the first character
+The name of the ticket has to be alphanumeric-only,R5.1.4,Check if the update actions fail when the ticket name contains a space as the last character
+The name of the ticket is no longer than 60 characters,R5.2.1,Check if the update actions succeed when the ticket name is less than 60 characters
+The name of the ticket is no longer than 60 characters,R5.2.2,Check if the update actions fail when the ticket name is more than 60 characters
+"The quantity of the tickets has to be more than 0, and less than or equal to 100",R5.3.1,Check if the update actions succeed if the quantity of tickets is 10
+"The quantity of the tickets has to be more than 0, and less than or equal to 101",R5.3.2,Check if the update actions fail if the quantity of tickets is 0
+"The quantity of the tickets has to be more than 0, and less than or equal to 102",R5.3.3,Check if the update actions fail if the quantity of tickets is 100
+"Price has to be of range [10, 100]",R5.4.1,Check if the update actions succeed if the ticket price is 10
+"Price has to be of range [10, 100]",R5.4.2,Check if the update actions fail if the ticket price is 9
+"Price has to be of range [10, 100]",R5.4.3,Check if the update actions succeed if the ticket price is 101
+Date must be given in the format YYYYMMDD,R5.5.1,Check if the update actions succeed if the date is formatted correctly
+Date must be given in the format YYYYMMDD,R5.5.2,Check if the update actions fail if the date is formatted incorrectly
+The ticket of the given name must exist,R5.6,Check if the update actions fail if the ticekt name does not exist
+"For any errors, redirect back to / and show an error message",R5.7,Check if the update actions fail that the user is redirected to / and an error message appears
+The name of the ticket has to be alphanumeric-only,R6.1.1,Check if the buying actions succeed when the ticket name is alphanumeric-only
+The name of the ticket has to be alphanumeric-only,R6.1.2,Check if the buying actions fail when the ticket name contains special characters
+The name of the ticket has to be alphanumeric-only,R6.1.3,Check if the buying actions fail when the ticket name contains a space as the first character
+The name of the ticket has to be alphanumeric-only,R6.1.4,Check if the buying actions fail when the ticket name contains a space as the last character
+The name of the ticket is no longer than 60 characters,R6.2.1,Check if the buying actions succeed when the ticket name is less than 60 characters
+The name of the ticket is no longer than 60 characters,R6.2.2,Check if the buying actions fail when the ticket name is more than 60 characters
+"The quantity of the tickets has to be more than 0, and less than or equal to 100",R6.3.1,Check if the buying actions succeed if the quantity of tickets is 10
+"The quantity of the tickets has to be more than 0, and less than or equal to 100",R6.3.2,Check if the buying actions fail if the quantity of tickets is 0
+"The quantity of the tickets has to be more than 0, and less than or equal to 100",R6.3.3,Check if the buying actions fail if the quantity of tickets is 101
+The ticket name exists in the database and the quantity is more than the quantity requested to buy,R6.4.1,Check if the buying actions succeed if the ticket name exists and quantity is more than the quantity requested to buy
+The ticket name exists in the database and the quantity is more than the quantity requested to buy,R6.4.2,Check if the buying actions fail if the ticket name does not exist
+The ticket name exists in the database and the quantity is more than the quantity requested to buy,R6.4.3,Check if the buying actions fail if quantity of tickets is 100 and the quantity requested to buy is 101
+The ticket name exists in the database and the quantity is more than the quantity requested to buy.,R6.4.4,Check if the buying actions fail if ticket name does not exist and quantity of tickets if 100 and the quantity requested to buy is 101
+The user has more balance than the ticket price * quantity + service fee(35%) + tax(5%),R6.5.1,Check if the buying actions succeeds if user balance is more than ticket price * quantity + service fee (35%) + tax (5%)
+The user has more balance than the ticket price * quantity + service fee(35%) + tax(5%),R6.5.2,Check if the buying actions fail if user balance is less than ticket price * quantity + service fee (35%) + tax (5%)
+"For any errors, redirect back to / and show an error message",R6.6.1,Check if any errors would redirect user back to / and show an error message
+"Logout will invalid the current session and redirect to the login page. After logout, the user shouldn't be able to access restricted pages.",R7.1.1,Check if /logout will invalid current session and redirects back to /login. Check that user shouldn't be able to access restricted pages.
+"For any other requests except the ones above, the system should return a 404 error",R8.1,"Of all http methods, make sure that only GET and POST work on /login"
+"For any other requests except the ones above, the system should return a 404 error",R8.2,"Of all http methods, make sure that only GET and POST work on /register"
+"For any other requests except the ones above, the system should return a 404 error",R8.3,"Of all http methods, make sure that only GET works on / "
+"For any other requests except the ones above, the system should return a 404 error",R8.4,"Of all http methods, make sure that only GET and POST work on /logout"
+"For any other requests except the ones above, the system should return a 404 error",R8.5,"Of all http methods, make sure that only POST works on /buy"
+"For any other requests except the ones above, the system should return a 404 error",R8.6,"Of all http methods, make sure that only POST works on /sell"
