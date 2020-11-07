@@ -5,7 +5,70 @@
 {% endblock %}
 
 {% block content %}
-<h2 id="welcome-header">Welcome {{ user.name }} !</h2>
+<h2 id="welcome-header">Hi {{ user.name }} !</h2>
+
+<h2 id="balance-elem">Balance: {{ user.balance }}</h2>
+
+
+
+
+
+<h2>Sell Tickets</h2>
+
+<form method="post">
+  <div class="form-group">
+    <label for="name">Name</label>
+    <input class="form-control" name="name" id="name" required>
+    <label for="quantity">Quantity</label>
+    <input class="form-control" name="quantity" id="quantity" required>
+    <label for="price">Price</label>
+    <input class="form-control" name="price" id="price" required>
+    <label for="exp">Expiration Date</label>
+    <input class="form-control" name="exp" id="exp" required>
+
+  <a href='/sell' class="btn btn-primary" id="btn-submit" >Sell</a>
+  </div>
+</form>
+
+
+
+
+
+
+<h2>Buy Tickets</h2>
+
+<form method="post">
+  <div class="form-group">
+    <label for="name">Name</label>
+    <input class="form-control" name="name" id="name" required>
+    <label for="quantity">Quantity</label>
+    <input class="form-control" name="quantity" id="quantity" required>
+
+  <a href='/buy' class="btn btn-primary" id="btn-submit" >Buy</a>
+  </div>
+</form>
+
+
+
+<h2>Update Tickets</h2>
+
+<form method="post">
+  <div class="form-group">
+    <label for="name">Name</label>
+    <input class="form-control" name="name" id="name" required>
+    <label for="quantity">Quantity</label>
+    <input class="form-control" name="quantity" id="quantity" required>
+    <label for="price">Price</label>
+    <input class="form-control" name="price" id="price" required>
+    <label for="exp">Expiration Date</label>
+    <input class="form-control" name="exp" id="exp" required>
+
+  <a href='/update' class="btn btn-primary" id="btn-submit" >Update</a>
+  </div>
+</form>
+
+
+
 
 
 <h2 >Here are all available tickets</h2>
