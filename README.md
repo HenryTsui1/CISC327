@@ -414,3 +414,5 @@ specfic values. For example:
 
 Will patch the backend `get_user` function (within the scope of the current test case)
 so that it return `test_user` instance below rather than actually reading the user data from the database. 
+
+Test changes

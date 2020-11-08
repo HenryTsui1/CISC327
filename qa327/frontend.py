@@ -16,15 +16,24 @@ The html templates are stored in the 'templates' folder.
 
 
 @app.route('/register', methods=['GET'])
+# This function checks to see if user is logged in, then directs them to the register page.
 def register_get():
     # templates are stored in the templates folder
+
+
     if 'logged_in' in session:
         return redirect('/')
     
+    # This directs the user to the /register page.
+
+    if 'logged_in' in session:
+        return redirect('/')
+
     return render_template('register.html', message='')
 
 
 @app.route('/register', methods=['POST'])
+# This function takes inputs from user and makes sure they follow the requirements for new registrants.
 def register_post():
     email = request.form.get('email')
     name = request.form.get('name')
@@ -47,7 +56,12 @@ def register_post():
 
     elif not re.search(regex_password,password):
         error_message = "Password not strong enough"
+
         return redirect('/login?message=Password not strong enough')
+
+
+        return redirect('/login?message=Password not strong enough')
+
     else:
         user = bn.get_user(email)
         if user:
@@ -55,7 +69,7 @@ def register_post():
         elif bn.register_user(email, name, password, password2, 5000):
             error_message = "Failed to store user info loser."
     # if there is any error messages when registering new user
-    # at the backend, go back to the register page.
+    # at the backend, directs back to the /register.
     if error_message:
         return render_template('register.html', message=error_message)
     else:
@@ -63,6 +77,7 @@ def register_post():
 
 
 @app.route('/login', methods=['GET'])
+# This function checks to see if user is logged in, if they aren't it directs them to the login page.
 def login_get():
     if 'logged_in' in session:
         return redirect('/')
@@ -75,6 +90,8 @@ def login_get():
 
 
 @app.route('/login', methods=['POST'])
+# This function takes inputs from user and makes sure they are in the database.
+# If they are it directs them to '/', if not they are redirected back to the /login page.
 def login_post():
     email = request.form.get('email')
     password = request.form.get('password')
@@ -106,12 +123,13 @@ def login_post():
 
 
 @app.route('/logout')
+# This function logs out a user if they are logged in.
 def logout():
     if 'logged_in' in session:
         session.pop('logged_in', None)
     return redirect('/')
 
-
+# This function is called to authenticate the user info for login.
 def authenticate(inner_function):
     """
     :param inner_function: any python function that accepts a user object
@@ -159,5 +177,11 @@ def profile(user):
 
 @app.errorhandler(404)
 def page_not_found(e):
+    # If the url does not met any of the existing
+    # urls it redirects to 404.html.
     return render_template('404.html'), 404
 
+
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template('404.html'), 404
