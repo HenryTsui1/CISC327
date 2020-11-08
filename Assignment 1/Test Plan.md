@@ -10,4 +10,3 @@ We have decided to use the scrum model, and we'll host meetings and discuss our 
 The testing framework will be used to test each requirement individually, ensuring that each test only isolates one condition and can be used to find specific issues easily.
 
 ## How are you going to organize different test case code files? (a folder for a specification?)
-Our test case code files will all be kept a folder called Test-Cases. Inside this folder will be eight folders, each corresponding to a single group of requirements. Within these folders, the natural language test cases as well as the actual testing code will be kept. If needed, there can be subfolders within these requirements folders, based on the parameters needed and the nature of those requirements. A single folder can be allocated per test case if needed.
