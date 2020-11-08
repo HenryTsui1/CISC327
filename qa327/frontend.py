@@ -180,8 +180,3 @@ def page_not_found(e):
     # If the url does not met any of the existing
     # urls it redirects to 404.html.
     return render_template('404.html'), 404
-
-
-@app.errorhandler(404)
-def page_not_found(e):
-    return render_template('404.html'), 404
