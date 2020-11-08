@@ -7,7 +7,7 @@ All test cases in each level will isolate specific functions from the code and t
 
 ## Techniques and tools used for testing.
 We will be performing white box testing methods on our code to ensure that every function works correctly indepently of one another. This will allow us to see exactly where any potential issues could be found in our code and help pinpoint smaller errors. This kind of testing will require more resources and detail. However, given the size of the project, we believe it is an appropriate choice. All tests will be automated using python.
-## Environemnts (all the local environment and the cloud environment) for the testing.
+## Environments (all the local environment and the cloud environment) for the testing.
 
 ## Responsibility (who is responsible for which test case, and in case of failure, who should you contact)
 
