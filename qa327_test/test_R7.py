@@ -21,8 +21,8 @@ class R1Test(BaseCase):
     #R7.1 Logout will invalid the current session and redirect to the login page. 
     def test_R7_1(self, *_):
         self.open(base_url + '/login')
-        self.type("#email", test_user[0])
-        self.type("#password", test_user[2])
+        self.type("#email", 'test_frontend@test.com')
+        self.type("#password", 'test_frontend')
         self.click('input[type="submit"]')
         self.open(base_url + '/logout')
         self.assert_text("Log In", "#login-header")
@@ -30,8 +30,8 @@ class R1Test(BaseCase):
     #R7.2 After logout, the user shouldn't be able to access restricted pages.
     def test_R7_2(self, *_):
         self.open(base_url + '/login')
-        self.type("#email", test_user[0])
-        self.type("#password", test_user[2])
+        self.type("#email", 'test_frontend@test.com')
+        self.type("#password", 'test_frontend')
         self.click('input[type="submit"]')
         self.open(base_url + '/logout')
         self.open(base_url + '/')
@@ -40,8 +40,3 @@ class R1Test(BaseCase):
         self.assert_text("Log In", "#login-header")
         self.open(base_url + '/sell')
         self.assert_text("Log In", "#login-header")
-        self.assert_text("Not logged in", "#not-logged-in-header")
-        self.open(base_url + '/buy')
-        self.assert_text("Not logged in", "#not-logged-in-header")
-        self.open(base_url + '/sell')
-        self.assert_text("Not logged in", "#not-logged-in-header")
