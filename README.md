@@ -1,6 +1,6 @@
 # GitHub Actions CI Template for Selenium+Flask MVC
 
-[![](https://github.com/CISC-CMPE-327/CI-Python/workflows/Python%20application/badge.svg)](https://github.com/CISC-CMPE-327/CI-Python/actions)
+[![](https://github.com/HenryTsui1/CISC327/workflows/Python%20application/badge.svg)](https://github.com/HenryTsui1/CISC327/actions)
 
 ## Instructions: 
 
@@ -414,3 +414,5 @@ specfic values. For example:
 
 Will patch the backend `get_user` function (within the scope of the current test case)
 so that it return `test_user` instance below rather than actually reading the user data from the database. 
+
+Test changes
