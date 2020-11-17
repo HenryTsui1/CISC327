@@ -13,12 +13,22 @@ test_user = User(
     password=generate_password_hash('test_frontend')
 )
 
+class R1Test(BaseCase):
 
-# class R1Test(BaseCase):
+    @patch('qa327.backend.get_user', return_value=test_user)
+    @login_required
 
-#     @patch('qa327.backend.get_user', return_value=test_user)
-#     def test_R1_1(self, *_):
-#         self.open(base_url + '/logout')
-#         self.open(base_url + '/login')
-#         self.assert_element("#login-header")
-#         self.assert_text("Log In", "#login-header")
+    def test_R7_1(self, *_):
+        self.open(base_url + '/login')
+        self.type("#email", test_user[0])
+        self.type("#password", test_user[2])
+        self.click('input[type="submit"]')
+        self.open(base_url + '/logout')
+        self.open(base_url + '/')
+        self.assert_text("Not logged in", "#not-logged-in-header")
+        self.open(base_url + '/buy')
+        self.assert_text("Not logged in", "#not-logged-in-header")
+        self.open(base_url + '/sell')
+        self.assert_text("Not logged in", "#not-logged-in-header")
+
+        # access to all restricted pages is denied
