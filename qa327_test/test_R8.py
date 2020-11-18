@@ -24,7 +24,7 @@ class R8Test(BaseCase):
         self.assert_element("Error 404 - Page not found.", "#welcome-header")
 
 '''
-    #R8.1 Make sure that GET and POST work on /register, and verify that error 404 is displayed
+    #R8.2 Make sure that GET and POST work on /register, and verify that error 404 is displayed
     def test_R8_1(self, *_):
         self.open(base_url + '/logout')
         self.open(base_url + '/login')
@@ -33,7 +33,7 @@ class R8Test(BaseCase):
         self.click('input[type="submit"]') #Can not direct to /register
         self.assert_text("Error 404 - Page not found", "#welcome-header") #redircts to the error404 page
 
-    #R8.2 Make sure that GET and POST work on /register, and verify that error 404 is displayed
+    #R8.3 Make sure that GET and POST work on /register, and verify that error 404 is displayed
     def test_R8_2(self, *_):
         self.open(base_url + '/logout')
         self.open(base_url + '/register')
@@ -44,7 +44,7 @@ class R8Test(BaseCase):
         self.click('input[type="submit"]')
         self.assert_text("Error 404", "#message")
 
-    #R8.3 Make sure that only GET works on /, and verify that error 404 is displayed
+    #R8.4 Make sure that only GET works on /, and verify that error 404 is displayed
     def test_R8_3(self, *_):
         self.open(base_url + '/logout')
         self.open(base_url + '/login')
@@ -53,7 +53,7 @@ class R8Test(BaseCase):
         self.click('input[type="submit"]')
         self.assert_text("Error 404", "#message")
 
-    #R8.3 Make sure that only GET and POST work on /logout
+    #R8.5 Make sure that only GET and POST work on /logout
     def test_R8_4(self, *_):
         self.open(base_url + '/logout')
         self.open(base_url + '/login')
@@ -63,7 +63,7 @@ class R8Test(BaseCase):
         self.clic('input[type="logout"]')
         self.assert_text("Error 404", "#message") #does not direct to /logout, error 404
 
-    #R8.4 Make sure that only POST works on /buy
+    #R8.6 Make sure that only POST works on /buy
     def test_R8_5(self, *_):
         self.open(base_url + '/logout')
         self.open(base_url + '/login')
@@ -72,7 +72,7 @@ class R8Test(BaseCase):
         self.click('input[type="submit"]')
         self.assert_text("Error 404", "#message") #Can not access /buy via "/"
 
-    #R8.5 Make sure that only POST works on /sell
+    #R8.7    Make sure that only POST works on /sell
     def test_R8_6(self, *_):
         self.open(base_url + '/logout')
         self.open(base_url + '/login')
