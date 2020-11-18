@@ -184,9 +184,13 @@ def page_not_found(e):
 
 # The following code was added to test form submissions, will be updated in next assignment.
 
-@app.route('/sell', methods=['GET','POST'])
+@app.route('/sell', methods=['POST'])
+def sell_post():
+    return render_template('login.html', message='Email/password combination incorrect.')
+
+@app.route('/sell', methods=['GET'])
 def sell_get():
-    return render_template('temp.html', message='Sold')
+    return render_template('login.html', message='Email/password combination incorrect.')
 
 @app.route('/buy', methods=['GET','POST'])
 def buy_get():
