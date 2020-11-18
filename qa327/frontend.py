@@ -186,13 +186,13 @@ def page_not_found(e):
 
 @app.route('/sell', methods=['POST'])
 def sell_post():
-    return render_template('Temp.html', message='Sell')
+    return render_template('temp.html', message='Sell')
 
 @app.route('/buy', methods=['GET','POST'])
 def buy_get():
-    return render_template('Temp.html', message='Bought')
+    return render_template('temp.html', message='Bought')
 
 @app.route('/update', methods=['GET','POST'])
 def update_get():
-    return render_template('Temp.html', message='Updated')
+    return render_template('temp.html', message='Updated')
 

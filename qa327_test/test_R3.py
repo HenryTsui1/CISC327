@@ -127,7 +127,7 @@ class R3Test(BaseCase):
         self.type("#sell-quantity", "5")
         self.type("#sell-price", "10")
         self.type("#sell-exp", "12/12/2020")
-        self.click('input[type="submit"]')
+        self.click('input[id="sell-submit"]')
         self.assert_element("#message")
         self.assert_text("Sold", "#message")
 
