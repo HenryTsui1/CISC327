@@ -8,9 +8,9 @@ from werkzeug.security import generate_password_hash, check_password_hash
 
 # Moch a sample user
 test_user = User(
-    email='test_frontend@test.com',
-    name='test_frontend',
-    password=generate_password_hash('test_frontend')
+    email='test@test.com',
+    name='test_user',
+    password=generate_password_hash('Test!!')
 )
 
 class R8Test(BaseCase):
