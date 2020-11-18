@@ -180,3 +180,19 @@ def page_not_found(e):
     # If the url does not met any of the existing
     # urls it redirects to 404.html.
     return render_template('404.html'), 404
+
+
+# The following code was added to test form submissions, will be updated in next assignment.
+
+@app.route('/sell', methods=['GET'])
+def sell_get():
+    return render_template('temp.html', message='Sold')
+
+@app.route('/buy', methods=['GET'])
+def buy_get():
+    return render_template('temp.html', message='Bought')
+
+@app.route('/update', methods=['GET'])
+def update_get():
+    return render_template('temp.html', message='Updated')
+

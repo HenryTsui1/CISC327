@@ -20,7 +20,7 @@ test_user = User(
 
 class R1Test(BaseCase):
 
-    # Test Case R1.1.1 If the user hasn't logged in, show the login page.
+    # Test Case R1.1 If the user hasn't logged in, show the login page.
     def test_R1_1(self, *_):
         self.open(base_url + '/logout')
         self.open(base_url + '/login')

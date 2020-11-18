@@ -15,18 +15,18 @@
 
 <h2>Sell Tickets</h2>
 
-<form method="post">
+<form method="post" id="sell-form">
   <div class="form-group">
     <label for="name">Name</label>
-    <input class="form-control" name="name" id="name" required>
+    <input class="form-control" name="name" id="sell-name" required>
     <label for="quantity">Quantity</label>
-    <input class="form-control" name="quantity" id="quantity" required>
+    <input class="form-control" name="quantity" id="sell-quantity" required>
     <label for="price">Price</label>
-    <input class="form-control" name="price" id="price" required>
+    <input class="form-control" name="price" id="sell-price" required>
     <label for="exp">Expiration Date</label>
-    <input class="form-control" name="exp" id="exp" required>
+    <input class="form-control" name="exp" id="sell-exp" required>
 
-  <a href='/sell' class="btn btn-primary" id="btn-submit" >Sell</a>
+  <a href='/sell' class="btn btn-primary" id="sell-submit" >Sell</a>
   </div>
 </form>
 
@@ -37,14 +37,14 @@
 
 <h2>Buy Tickets</h2>
 
-<form method="post">
+<form method="post" id="buy-form">
   <div class="form-group">
     <label for="name">Name</label>
-    <input class="form-control" name="name" id="name" required>
+    <input class="form-control" name="name" id="buy-name" required>
     <label for="quantity">Quantity</label>
-    <input class="form-control" name="quantity" id="quantity" required>
+    <input class="form-control" name="quantity" id="buy-quantity" required>
 
-  <a href='/buy' class="btn btn-primary" id="btn-submit" >Buy</a>
+  <a href='/buy' class="btn btn-primary" id="buy-submit" >Buy</a>
   </div>
 </form>
 
@@ -52,18 +52,18 @@
 
 <h2>Update Tickets</h2>
 
-<form method="post">
+<form method="post" id="upd-form">
   <div class="form-group">
     <label for="name">Name</label>
-    <input class="form-control" name="name" id="name" required>
+    <input class="form-control" name="name" id="upd-name" required>
     <label for="quantity">Quantity</label>
-    <input class="form-control" name="quantity" id="quantity" required>
+    <input class="form-control" name="quantity" id="upd-quantity" required>
     <label for="price">Price</label>
-    <input class="form-control" name="price" id="price" required>
+    <input class="form-control" name="price" id="upd-price" required>
     <label for="exp">Expiration Date</label>
-    <input class="form-control" name="exp" id="exp" required>
+    <input class="form-control" name="exp" id="upd-exp" required>
 
-  <a href='/update' class="btn btn-primary" id="btn-submit" >Update</a>
+  <a href='/update' class="btn btn-primary" id="upd-submit" >Update</a>
   </div>
 </form>
 
@@ -81,5 +81,5 @@
 {% endfor %}
 </div>
 
-<a href='/logout'>logout</a>
+<a id="logout" href='/logout'>logout</a>
 {% endblock %}
