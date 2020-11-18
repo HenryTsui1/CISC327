@@ -127,7 +127,7 @@ class R3Test(BaseCase):
         self.type("#sell-quantity", "5")
         self.type("#sell-price", "10")
         self.type("#sell-exp", "12/12/2020")
-        self.click("#sell-submit")
+        self.click('input[id="sell-submit"]')
         self.assert_element("#message")
         self.assert_text("Sold", "#message")
 
@@ -142,7 +142,7 @@ class R3Test(BaseCase):
         self.assert_element("#buy-form")
         self.type("#buy-name", "Test")
         self.type("#buy-quantity", "5")
-        self.click("#buy-submit")
+        self.click('input[id="buy-submit"]')
         self.assert_element("#message")
         self.assert_text("Bought", "#message")
 
@@ -159,7 +159,7 @@ class R3Test(BaseCase):
         self.type("#upd-quantity", "5")
         self.type("#upd-price", "10")
         self.type("#upd-exp", "12/12/2020")
-        self.click("#upd-submit")
+        self.click('input[id="upd-submit"]')
         self.assert_element("#message")
         self.assert_text("Updated", "#message")
 

@@ -184,15 +184,15 @@ def page_not_found(e):
 
 # The following code was added to test form submissions, will be updated in next assignment.
 
-@app.route('/sell', methods=['GET'])
-def sell_get():
+@app.route('/sell', methods=['POST'])
+def sell_post():
     return render_template('temp.html', message='Sold')
 
-@app.route('/buy', methods=['GET'])
+@app.route('/buy', methods=['GET','POST'])
 def buy_get():
     return render_template('temp.html', message='Bought')
 
-@app.route('/update', methods=['GET'])
+@app.route('/update', methods=['GET','POST'])
 def update_get():
     return render_template('temp.html', message='Updated')
 

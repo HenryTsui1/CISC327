@@ -15,9 +15,10 @@ test_user = User(
 
 class R7Test(BaseCase):
 
-    @patch('qa327.backend.get_user', return_value=test_user)
+
 
     #R7.1 Logout will invalid the current session and redirect to the login page. 
+    @patch('qa327.backend.get_user', return_value=test_user)
     def test_R7_1(self, *_):
         self.open(base_url + '/logout')
         self.open(base_url + '/login')
@@ -31,6 +32,7 @@ class R7Test(BaseCase):
         self.assert_text("Log In", "#login-header")
 
     #R7.2 After logout, the user shouldn't be able to access restricted pages.
+    @patch('qa327.backend.get_user', return_value=test_user)
     def test_R7_2(self, *_):
         self.open(base_url + '/logout')
         self.open(base_url + '/login')
