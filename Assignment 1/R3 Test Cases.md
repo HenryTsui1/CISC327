@@ -1,6 +1,6 @@
-#R3
+# R3
 
-##Test Data:
+## Test Data:
 
 
 
@@ -19,11 +19,11 @@ temp_tickets = Tickets(
 
 
 
-##Test Cases
+## Test Cases
 
-##R3.1
+## R3.1
 
-##User is not logged in. Check that / redirects to login, 
+## User is not logged in. Check that / redirects to login, 
 Mocking:
 -backend.get_user 
 
@@ -35,11 +35,11 @@ open /
 
 
 
-##R3.2
+## R3.2
 
-##User is logged in. Check that / displays proper info is displayed and /logout works
+## User is logged in. Check that / displays proper info is displayed and /logout works
 Mocking:
--backend.get_user ##returns user info
+-backend.get_user ## returns user info
 
 Actions:
 -open /logout (to invalidate any logged-in sessions that may exist)
@@ -61,11 +61,11 @@ open /
 
 
 
-##R3.3
-##This verifies that ticket info is available after login
+## R3.3
+## This verifies that ticket info is available after login
 
 Mocking:
--backend.get_user ##returns user info
+-backend.get_user ## returns user info
 
 Actions:
 -open /logout (to invalidate any logged-in sessions that may exist)
@@ -83,8 +83,8 @@ Actions:
 
 
 
-##R3.4.1
-##Verify that sell fields exist
+## R3.4.1
+## Verify that sell fields exist
 
 Mocking:
 -backend.get_user
@@ -105,8 +105,8 @@ open /logout
 
 
 
-##R3.4.2
-##Verify that sell fields can have data entered
+## R3.4.2
+## Verify that sell fields can have data entered
 
 Mocking:
 -backend.get_user
@@ -125,11 +125,11 @@ Actions:
 open /logout
 
 
-##R3.5.1
-##Verify that buy fields exist 
+## R3.5.1
+## Verify that buy fields exist 
 
 Mocking:
--backend.get_user ##to get specific user instance
+-backend.get_user ## to get specific user instance
 -backend.get_temp_tickets
 
 Actions:
@@ -145,11 +145,11 @@ Actions:
 
 
 
-##R3.5.2
-##Verify that buy fields can have info entered
+## R3.5.2
+## Verify that buy fields can have info entered
 
 Mocking:
--backend.get_user ##to get specific user instance
+-backend.get_user ## to get specific user instance
 -backend.get_temp_tickets
 
 Actions:
@@ -164,12 +164,12 @@ Actions:
 - open /logout
 
 
-##R3.6
-##Verify that sell operation can be completed
+## R3.6
+## Verify that sell operation can be completed
 
 Mocking:
 -backend.get_user 
--backend.set-temp-tickets##update tickets available for user
+-backend.set-temp-tickets## update tickets available for user
 
 Actions:
 -open /logout (to invalidate any logged-in sessions that may exist)
@@ -187,12 +187,12 @@ Actions:
 
 
 
-##R3.7
-##Verify that sell operation now visible to user 
+## R3.7
+## Verify that sell operation now visible to user 
 
 Mocking:
 -backend.get_user 
--backend.set-temp-tickets##update tickets available for user
+-backend.set-temp-tickets## update tickets available for user
 
 Actions:
 -open /logout (to invalidate any logged-in sessions that may exist)
@@ -209,11 +209,11 @@ Actions:
 
 
 
-##R3.8.1
-##Verify that buy can be completed 
+## R3.8.1
+## Verify that buy can be completed 
 
 Mocking:
--backend.get_user to get specific user instance ##returns user info
+-backend.get_user to get specific user instance ## returns user info
 -backend.get_temp_tickets
 
 Actions:
@@ -232,11 +232,11 @@ Actions:
 
 
 
-##R3.8.2
-##Verify that bought tickets are visible to user
+## R3.8.2
+## Verify that bought tickets are visible to user
 
 Mocking:
--backend.get_user to get specific user instance ##returns user info
+-backend.get_user to get specific user instance ## returns user info
 -backend.get_temp_tickets
 
 Actions:
@@ -257,11 +257,11 @@ Actions:
 
 
 
-##R3.9.1
-##Verify that update elements exist
+## R3.9.1
+## Verify that update elements exist
 
 Mocking:
--backend.get_user to get specific user instance ##returns user info
+-backend.get_user to get specific user instance ## returns user info
 -backend.get_temp_tickets
 
 Actions:
@@ -278,11 +278,11 @@ Actions:
 -open /logout
 
 
-##R3.9.2
-##Verify that update elements can have info entered
+## R3.9.2
+## Verify that update elements can have info entered
 
 Mocking:
--backend.get_user to get specific user instance ##returns user info
+-backend.get_user to get specific user instance ## returns user info
 -backend.get_temp_tickets
 
 Actions:
@@ -302,11 +302,11 @@ Actions:
 -enter "20211212"
 -open /logout
 
-##R3.9.3
-##Verify that updated tickets now visible to user
+## R3.9.3
+## Verify that updated tickets now visible to user
 
 Mocking:
--backend.get_user to get specific user instance ##returns user info
+-backend.get_user to get specific user instance ## returns user info
 -backend.get_temp_tickets
 
 Actions:
