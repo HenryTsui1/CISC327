@@ -128,7 +128,7 @@ class R3Test(BaseCase):
         self.type("#sell-price", "10")
         self.type("#sell-exp", "12/12/2020")
         self.click('input[id="sell-submit"]')
-        self.assert_element("#sell-submit")
+        self.assert_element("message")
         #self.assert_text("Sold", "#message")
 
 # R3.10 The ticket-buying form can be posted to /buy
