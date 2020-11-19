@@ -15,3 +15,4 @@ class R8Test(BaseCase):
         self.assert_element("#welcome-header")
         self.assert_text("Error 404 - Page not found.", "#welcome-header")
         
+
