@@ -196,3 +196,36 @@ def buy_get():
 def update_get():
     return render_template('temp.html', message='Updated')
 
+
+
+
+# #unauthorized methods 
+
+
+# @app.route('/update', methods=['PUT', 'PATCH', 'HEAD', 'OPTIONS', 'DELETE'])
+# def update_error():
+#     return render_template('404.html'), 404
+
+    
+# @app.route('/buy', methods=['PUT', 'PATCH', 'HEAD', 'OPTIONS', 'DELETE'])
+# def buy_error():
+#     return render_template('404.html'), 404
+
+# @app.route('/sell', methods=['PUT', 'PATCH', 'HEAD', 'OPTIONS', 'DELETE'])
+# def sell_error():
+#     return render_template('404.html'), 404
+
+    
+# @app.route('/', methods=['PUT', 'PATCH', 'HEAD', 'OPTIONS', 'DELETE'])
+# def profile_error():
+#     return render_template('404.html'), 404
+
+    
+# @app.route('/register', methods=['PUT', 'PATCH', 'HEAD', 'OPTIONS', 'DELETE'])
+# def register_error():
+#     return render_template('404.html'), 404
+
+    
+# @app.route('/login', methods=['PUT', 'PATCH', 'HEAD', 'OPTIONS', 'DELETE'])
+# def login_error():
+#    return render_template('404.html'), 404
