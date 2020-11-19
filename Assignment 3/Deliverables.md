@@ -16,3 +16,6 @@ The template for testing was changed slightly to keep things in line with the re
 | R7.1.2            | After logout, the user shouldn't be able to access restricted  pages                                                                                      | Test code was looking for restricted pages that did not exist yet.                                                                                                                                                                                        | Tested the authentication of '/' and made sure it redirected  to '/login' instead.                                                                                                                                                            |
 
 ## Backend Test
+The backend test uses the black-box technique for testing in three steps. Step 1: Create a new user, and give them a balance of 5000.  This is all recorded in the database.
+Step 2:Login as the newly created user. Step 3: Verify that the profile page displays 5000 as the current user balance.
+The html page pulls its information to populate name and balance based on that user's login info, so the database must have 5000 entered for that specific user. 
