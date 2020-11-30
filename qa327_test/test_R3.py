@@ -15,7 +15,7 @@ test_user = User(
 
 # Moch some sample tickets
 test_tickets = [
-    {'name': 't1', 'price': '100'}
+    {'title': 't1', 'price': '100'}
 ]
 
 class R3Test(BaseCase):

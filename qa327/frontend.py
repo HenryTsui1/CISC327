@@ -1,3 +1,4 @@
+
 from flask import render_template, request, session, redirect
 from qa327 import app
 import qa327.backend as bn
@@ -186,6 +187,11 @@ def page_not_found(e):
 
 @app.route('/sell', methods=['POST'])
 def sell_post():
+    title = request.form.get('sell-name')
+    quantity = request.form.get('sell-quantity')
+    price = request.form.get('sell-price')
+    expDate = request.form.get('sell-exp')
+    bn.create_ticket(title, quantity, price, expDate)
     return render_template('temp.html', message='Sold')
 
 @app.route('/buy', methods=['GET','POST'])
