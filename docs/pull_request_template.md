@@ -3,7 +3,7 @@
 Please include a summary of the change and which portion of work was completed.
 Fixes # (issue)
 
-# Which section did you test?
+# Which section did you work on?
 
 - [ ] R1
 - [ ] R2
