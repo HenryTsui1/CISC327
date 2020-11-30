@@ -1,3 +1,4 @@
+
 from flask import render_template, request, session, redirect
 from qa327 import app
 import qa327.backend as bn
@@ -6,6 +7,7 @@ import re
 regex_email = '^[a-z0-9]+[\._]?[a-z0-9]+[@]\w+[.]\w{2,3}$'
 regex_password = '^(?=.*[a-z])(?=.*[A-Z])(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{6,}$'
 regex_name = '(?=^[0-9a-zA-Z])(?=.*[0-9a-zA-Z]$)^[0-9a-zA-Z ]{3,19}$'
+regex_title = '(?=^[0-9a-zA-Z])(?=.*[0-9a-zA-Z]$)^[0-9a-zA-Z ]{1,61}$'
 
 """
 This file defines the front-end part of the service.
@@ -56,9 +58,6 @@ def register_post():
 
     elif not re.search(regex_password,password):
         error_message = "Password not strong enough"
-
-        return redirect('/login?message=Password not strong enough')
-
 
         return redirect('/login?message=Password not strong enough')
 
@@ -173,7 +172,7 @@ def profile(user):
     # the login checking code all the time for other
     # front-end portals
     tickets = bn.get_all_tickets()
-    return render_template('index.html', user=user, tickets=tickets)
+    return render_template('index.html', user=user, tickets=tickets, message ='')
 
 @app.errorhandler(404)
 def page_not_found(e):
@@ -186,6 +185,18 @@ def page_not_found(e):
 
 @app.route('/sell', methods=['POST'])
 def sell_post():
+    title = request.form.get('sell-name')
+    quantity = request.form.get('sell-quantity')
+    price = request.form.get('sell-price')
+    expDate = request.form.get('sell-exp')
+
+
+    if not re.search(regex_title,title):
+        return redirect('/?message=Name format error')
+
+
+
+    bn.create_ticket(title, quantity, price, expDate)
     return render_template('temp.html', message='Sold')
 
 @app.route('/buy', methods=['GET','POST'])
