@@ -53,6 +53,18 @@ def create_ticket(title, quantity, price, expDate):
     db.session.commit()
     return None
 
+def get_ticket(title):
+    ticket = Ticket.query.filter_by(title=title).first()
+    return ticket
+
+def update_ticket(title, quantity, price, expDate):
+    t = get_ticket(title)
+    t.quantity = quantity
+    t.price = price
+    t.expDate = expDate
+    db.session.commit()
+    return None
+
 
 def get_all_tickets():
     tickets = Ticket.query.all()
