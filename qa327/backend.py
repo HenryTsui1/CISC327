@@ -47,6 +47,12 @@ def register_user(email, name, password, password2, balance):
     db.session.commit()
     return None
 
+def create_ticket(title, quantity, price, expDate):
+    new_ticket = Ticket(title=title, quantity=quantity, price=price, expDate=expDate)
+    db.session.add(new_ticket)
+    db.session.commit()
+    return None
+
 
 def get_all_tickets():
     tickets = Ticket.query.all()
