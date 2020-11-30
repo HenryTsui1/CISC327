@@ -1,4 +1,4 @@
-from qa327.models import db, User
+from qa327.models import db, User, Ticket
 from werkzeug.security import generate_password_hash, check_password_hash
 
 """
@@ -43,11 +43,11 @@ def register_user(email, name, password, password2, balance):
     hashed_pw = generate_password_hash(password, method='sha256')
     # store the encrypted password rather than the plain password
     new_user = User(email=email, name=name, password=hashed_pw, balance=balance)
-
     db.session.add(new_user)
     db.session.commit()
     return None
 
 
 def get_all_tickets():
-    return []
+    tickets = Ticket.query.all()
+    return tickets
