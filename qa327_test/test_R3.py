@@ -3,7 +3,7 @@ from seleniumbase import BaseCase
 
 from qa327_test.conftest import base_url
 from unittest.mock import patch
-from qa327.models import db, User
+from qa327.models import db, User, Ticket
 from werkzeug.security import generate_password_hash, check_password_hash
 
 # Moch a sample user
@@ -14,9 +14,12 @@ test_user = User(
 )
 
 # Moch some sample tickets
-test_tickets = [
-    {'title': 't1', 'price': '100'}
-]
+test_tickets = Ticket(
+    title='TestTest',
+    quantity='50',
+    price='50',
+    expDate='20201212'
+)
 
 class R3Test(BaseCase):
 
@@ -64,15 +67,14 @@ class R3Test(BaseCase):
 
 # R3.5 This page lists all available tickets. Information including the quantity of each ticket, the owner's email, and the price, for tickets that are not expired.
     @patch('qa327.backend.get_user', return_value=test_user)
-    @patch('qa327.backend.get_all_tickets', return_value=test_tickets)
+    @patch('qa327.backend.get_ticket', return_value=test_tickets)
     def test_R3_5(self, *_):
         self.open(base_url + '/logout')
         self.open(base_url + '/login')
         self.type("#email", "test@test.com")
         self.type("#password", "Test!!")
         self.click('input[type="submit"]') 
-        self.assert_element("#tickets div h4")
-        self.assert_text("t1 100", "#tickets div h4")
+        self.assert_element("#tickets")
 
 # R3.6 This page contains a form that a user can submit new tickets for sell. Fields: name, quantity, price, expiration date
     @patch('qa327.backend.get_user', return_value=test_user)
@@ -123,7 +125,7 @@ class R3Test(BaseCase):
         self.type("#password", "Test!!")
         self.click('input[type="submit"]')
         self.assert_element("#sell-form")
-        self.type("#sell-name", "TestTicket")
+        self.type("#sell-name", "TestTest")
         self.type("#sell-quantity", "5")
         self.type("#sell-price", "10")
         self.type("#sell-exp", "12122020")
@@ -133,6 +135,7 @@ class R3Test(BaseCase):
 
 # R3.10 The ticket-buying form can be posted to /buy
     @patch('qa327.backend.get_user', return_value=test_user)
+    @patch('qa327.backend.get_ticket', return_value=test_tickets)
     def test_R3_10(self, *_):
         self.open(base_url + '/logout')
         self.open(base_url + '/login')
@@ -148,6 +151,7 @@ class R3Test(BaseCase):
 
 # R3.11 The ticket-update form can be posted to /update
     @patch('qa327.backend.get_user', return_value=test_user)
+    @patch('qa327.backend.get_ticket', return_value=test_tickets)
     def test_R3_11(self, *_):
         self.open(base_url + '/logout')
         self.open(base_url + '/login')

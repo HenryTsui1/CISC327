@@ -233,12 +233,38 @@ def sell_post():
     bn.create_ticket(title, quantity, price, expDate)
     return render_template('temp.html', message='Sold')
 
-@app.route('/buy', methods=['GET','POST'])
+@app.route('/buy', methods=['POST'])
 def buy_get():
     return render_template('temp.html', message='Bought')
 
-@app.route('/update', methods=['GET','POST'])
+@app.route('/update', methods=['POST'])
 def update_get():
+    title = request.form.get('upd-name')
+    try:
+        quantity = int(request.form.get('upd-quantity'))
+        price = int(request.form.get('upd-price'))
+        expDate = int(request.form.get('upd-exp'))
+    except:
+        return redirect('/?sMessage=Field Requires Integer')
+
+    temp = str(expDate)
+    expDateLen = len(temp)
+    ticket = bn.get_ticket(title)
+
+
+    if not ticket:
+        return redirect('/?uMessage=Ticket Does Not Exist')
+    elif not re.search(regex_title,title):
+        return redirect('/?uMessage=Name Format Error')
+    elif quantity <= 0 or quantity > 100:
+        return redirect('/?uMessage=Invalid Quantity')
+    elif price < 10 or price > 100:
+        return redirect('/?uMessage=Invalid Price')
+    elif expDateLen != 8:
+        return redirect('/?uMessage=Invalid Date Format (YYYYMMDD)')
+
+
+    bn.update_ticket(title, quantity, price, expDate)
     return render_template('temp.html', message='Updated')
 
 
