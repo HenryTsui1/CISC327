@@ -7,7 +7,8 @@ import re
 regex_email = '^[a-z0-9]+[\._]?[a-z0-9]+[@]\w+[.]\w{2,3}$'
 regex_password = '^(?=.*[a-z])(?=.*[A-Z])(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{6,}$'
 regex_name = '(?=^[0-9a-zA-Z])(?=.*[0-9a-zA-Z]$)^[0-9a-zA-Z ]{3,19}$'
-regex_title = '(?=^[0-9a-zA-Z])(?=.*[0-9a-zA-Z]$)^[0-9a-zA-Z ]{1,61}$'
+regex_title = '(?=^[0-9a-zA-Z])(?=.*[0-9a-zA-Z]$)^[0-9a-zA-Z ]{6,60}$'
+
 
 """
 This file defines the front-end part of the service.
@@ -172,7 +173,22 @@ def profile(user):
     # the login checking code all the time for other
     # front-end portals
     tickets = bn.get_all_tickets()
-    return render_template('index.html', user=user, tickets=tickets, message ='')
+
+
+    s = request.args.get('sMessage')
+    if s == None:
+        s = ''
+    
+
+    b = request.args.get('bMessage')
+    if b == None:
+        b = ''
+
+
+    u = request.args.get('uMessage')
+    if u == None:
+        u = ''
+    return render_template('index.html', user=user, tickets=tickets, sMessage =s, bMessage =b, uMessage =u)
 
 @app.errorhandler(404)
 def page_not_found(e):
@@ -186,13 +202,31 @@ def page_not_found(e):
 @app.route('/sell', methods=['POST'])
 def sell_post():
     title = request.form.get('sell-name')
-    quantity = request.form.get('sell-quantity')
-    price = request.form.get('sell-price')
-    expDate = request.form.get('sell-exp')
+    try:
+        quantity = int(request.form.get('sell-quantity'))
+        price = int(request.form.get('sell-price'))
+        expDate = int(request.form.get('sell-exp'))
+    except:
+        return redirect('/?sMessage=Field Requires Integer')
+
+
+
+
+
+    temp = str(expDate)
+    expDateLen = len(temp)
 
 
     if not re.search(regex_title,title):
-        return redirect('/?message=Name format error')
+        return redirect('/?sMessage=Name Format Error')
+    elif quantity <= 0 or quantity > 100:
+        return redirect('/?sMessage=Invalid Quantity')
+    elif price < 10 or price > 100:
+        return redirect('/?sMessage=Invalid Price')
+    elif expDateLen != 8:
+        return redirect('/?sMessage=Invalid Date Format (YYYYMMDD)')
+
+
 
 
 
