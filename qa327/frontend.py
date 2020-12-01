@@ -261,8 +261,8 @@ def buy_post():
         return redirect('/?bMessage=Not Enough Tickets Left')
     elif user.balance < cost:
         return redirect('/?bMessage=Insufficient Funds')
-
-    #bn.buy_ticket(title, quantity, cost, user)
+        
+    bn.buy_ticket(title, quantity, cost, user)
     return render_template('temp.html', message='Bought')
 
 @app.route('/update', methods=['POST'])
