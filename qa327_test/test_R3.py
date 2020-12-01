@@ -10,15 +10,16 @@ from werkzeug.security import generate_password_hash, check_password_hash
 test_user = User(
     email='test@test.com',
     name='test_user',
-    password=generate_password_hash('Test!!')
+    password=generate_password_hash('Test!!'),
+    balance = 5000
 )
 
 # Moch some sample tickets
 test_tickets = Ticket(
     title='TestTest',
-    quantity='50',
-    price='50',
-    expDate='20201212'
+    quantity=50,
+    price=50,
+    expDate=20201212
 )
 
 class R3Test(BaseCase):
