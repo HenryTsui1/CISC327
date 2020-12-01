@@ -234,18 +234,46 @@ def sell_post():
     return render_template('temp.html', message='Sold')
 
 @app.route('/buy', methods=['POST'])
-def buy_get():
+def buy_post():
+    title = request.form.get('buy-name')
+    try:
+        quantity = int(request.form.get('buy-quantity'))
+    except:
+        return redirect('/?bMessage=Field Requires Integer')
+
+    ticket = bn.get_ticket(title)
+
+    email = session['logged_in']
+    
+    user = bn.get_user(email)
+
+    serviceFee = ticket.price * quantity * 0.35
+    tax = ticket.price * quantity * 0.05
+    cost = (ticket.price * quantity + serviceFee + tax)
+
+    if not ticket:
+        return redirect('/?bMessage=Ticket Does Not Exist')
+    elif not re.search(regex_title,title):
+        return redirect('/?bMessage=Name Format Error')
+    elif quantity <= 0 or quantity > 100:
+        return redirect('/?bMessage=Invalid Quantity')
+    elif quantity > ticket.quantity:
+        return redirect('/?bMessage=Not Enough Tickets Left')
+    elif user.balance < cost:
+        return redirect('/?bMessage=Insufficient Funds')
+
+    #bn.buy_ticket(title, quantity, cost, user)
     return render_template('temp.html', message='Bought')
 
 @app.route('/update', methods=['POST'])
-def update_get():
+def update_post():
     title = request.form.get('upd-name')
     try:
         quantity = int(request.form.get('upd-quantity'))
         price = int(request.form.get('upd-price'))
         expDate = int(request.form.get('upd-exp'))
     except:
-        return redirect('/?sMessage=Field Requires Integer')
+        return redirect('/?uMessage=Field Requires Integer')
 
     temp = str(expDate)
     expDateLen = len(temp)
@@ -267,36 +295,3 @@ def update_get():
     bn.update_ticket(title, quantity, price, expDate)
     return render_template('temp.html', message='Updated')
 
-
-
-
-# #unauthorized methods 
-
-
-# @app.route('/update', methods=['PUT', 'PATCH', 'HEAD', 'OPTIONS', 'DELETE'])
-# def update_error():
-#     return render_template('404.html'), 404
-
-    
-# @app.route('/buy', methods=['PUT', 'PATCH', 'HEAD', 'OPTIONS', 'DELETE'])
-# def buy_error():
-#     return render_template('404.html'), 404
-
-# @app.route('/sell', methods=['PUT', 'PATCH', 'HEAD', 'OPTIONS', 'DELETE'])
-# def sell_error():
-#     return render_template('404.html'), 404
-
-    
-# @app.route('/', methods=['PUT', 'PATCH', 'HEAD', 'OPTIONS', 'DELETE'])
-# def profile_error():
-#     return render_template('404.html'), 404
-
-    
-# @app.route('/register', methods=['PUT', 'PATCH', 'HEAD', 'OPTIONS', 'DELETE'])
-# def register_error():
-#     return render_template('404.html'), 404
-
-    
-# @app.route('/login', methods=['PUT', 'PATCH', 'HEAD', 'OPTIONS', 'DELETE'])
-# def login_error():
-#    return render_template('404.html'), 404
