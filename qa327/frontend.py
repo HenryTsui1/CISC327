@@ -190,6 +190,7 @@ def profile(user):
         u = ''
     return render_template('index.html', user=user, tickets=tickets, sMessage =s, bMessage =b, uMessage =u)
 
+
 @app.errorhandler(404)
 def page_not_found(e):
     # If the url does not met any of the existing
@@ -210,9 +211,6 @@ def sell_post():
         return redirect('/?sMessage=Field Requires Integer')
 
 
-
-
-
     temp = str(expDate)
     expDateLen = len(temp)
 
@@ -227,15 +225,46 @@ def sell_post():
         return redirect('/?sMessage=Invalid Date Format (YYYYMMDD)')
 
 
-
-
-
     bn.create_ticket(title, quantity, price, expDate)
     return render_template('temp.html', message='Sold')
 
+
 @app.route('/buy', methods=['POST'])
 def buy_get():
+    title = request.form.get('buy-name')
+    try:
+        quantity = int(request.form.get('buy-quantity'))
+        price = int(request.form.get('buy-price'))
+        expDate = int(request.form.get('buy-exp'))
+    except:
+        return redirect('/?sMessage=Field Requires Integer')
+
+
+    temp = str(expDate)
+    expDateLen = len(temp)
+    ticket = bn.get_ticket(title)
+    ticket_quantity = bn.get_ticket_quantity(quantity)
+    #user_balance = bn.get_balance(balance) #gets user balance to check if its greater than ticket price * quantity + service fee + tax
+
+
+    if not ticket:
+        return redirect('/?uMessage=Ticket Does Not Exist')
+    elif not re.search(regex_title,title):
+        return redirect('/?sMesssage=Name Format Error')
+    elif (quantity <= 0 or quantity > 100) and ticket_quantity > quantity:
+        return redirect('/?sMessage=Invalid Quantity')
+    elif price < 10 or price > 100:
+        return redirect('/?sMessage=Invalid Price')
+    elif expDateLen != 8:
+        return redirect('/?sMessage=Invalid Date Formet (YYYYMMDD)')
+    """
+    elif user_balance < price * quantity + service fee(price * quantity * 0.35) + tax(price * quantity * 0.05)
+        return redirect('/?sMessage=Insufficient Balance')
+    """
+    
+    bn.buy_ticket(title, quantity, price, expDate)
     return render_template('temp.html', message='Bought')
+
 
 @app.route('/update', methods=['POST'])
 def update_get():
