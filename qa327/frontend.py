@@ -243,19 +243,19 @@ def buy_post():
 
     ticket = bn.get_ticket(title)
 
-    email = session['logged_in']
-    
+    if not re.search(regex_title,title):
+        return redirect('/?bMessage=Name Format Error')
+    elif not ticket:
+        return redirect('/?bMessage=Ticket Does Not Exist')
+
+    email = session['logged_in']   
     user = bn.get_user(email)
 
     serviceFee = ticket.price * quantity * 0.35
     tax = ticket.price * quantity * 0.05
     cost = (ticket.price * quantity + serviceFee + tax)
 
-    if not ticket:
-        return redirect('/?bMessage=Ticket Does Not Exist')
-    elif not re.search(regex_title,title):
-        return redirect('/?bMessage=Name Format Error')
-    elif quantity <= 0 or quantity > 100:
+    if quantity <= 0 or quantity > 100:
         return redirect('/?bMessage=Invalid Quantity')
     elif quantity > ticket.quantity:
         return redirect('/?bMessage=Not Enough Tickets Left')
