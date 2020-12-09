@@ -168,7 +168,7 @@ def authenticate(inner_function):
 @authenticate
 def profile(user):
     # authentication is done in the wrapper function
-    # see above.
+    # see above
     # by using @authenticate, we don't need to re-write
     # the login checking code all the time for other
     # front-end portals
