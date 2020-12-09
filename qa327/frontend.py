@@ -115,7 +115,7 @@ def login_post():
         if the client has already login in the following sessions.
 
         """
-        # success! go back to the home page
+        # success! go back to the x page
         # code 303 is to force a 'GET' request
         return redirect('/', code=303)
     else:
