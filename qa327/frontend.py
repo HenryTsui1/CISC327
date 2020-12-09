@@ -230,51 +230,47 @@ def sell_post():
 
 
 @app.route('/buy', methods=['POST'])
-def buy_get():
+def buy_post():
     title = request.form.get('buy-name')
     try:
         quantity = int(request.form.get('buy-quantity'))
-        price = int(request.form.get('buy-price'))
-        expDate = int(request.form.get('buy-exp'))
     except:
-        return redirect('/?sMessage=Field Requires Integer')
+        return redirect('/?bMessage=Field Requires Integer')
 
-
-    temp = str(expDate)
-    expDateLen = len(temp)
     ticket = bn.get_ticket(title)
-    ticket_quantity = bn.get_ticket_quantity(quantity)
-    #user_balance = bn.get_balance(balance) #gets user balance to check if its greater than ticket price * quantity + service fee + tax
 
+    if not re.search(regex_title,title):
+        return redirect('/?bMessage=Name Format Error')
+    elif not ticket:
+        return redirect('/?bMessage=Ticket Does Not Exist')
 
-    if not ticket:
-        return redirect('/?uMessage=Ticket Does Not Exist')
-    elif not re.search(regex_title,title):
-        return redirect('/?sMesssage=Name Format Error')
-    elif (quantity <= 0 or quantity > 100) and ticket_quantity > quantity:
-        return redirect('/?sMessage=Invalid Quantity')
-    elif price < 10 or price > 100:
-        return redirect('/?sMessage=Invalid Price')
-    elif expDateLen != 8:
-        return redirect('/?sMessage=Invalid Date Formet (YYYYMMDD)')
-    """
-    elif user_balance < price * quantity + service fee(price * quantity * 0.35) + tax(price * quantity * 0.05)
-        return redirect('/?sMessage=Insufficient Balance')
-    """
-    
-    bn.buy_ticket(title, quantity, price, expDate)
+    email = session['logged_in']   
+    user = bn.get_user(email)
+
+    serviceFee = ticket.price * quantity * 0.35
+    tax = ticket.price * quantity * 0.05
+    cost = (ticket.price * quantity + serviceFee + tax)
+
+    if quantity <= 0 or quantity > 100:
+        return redirect('/?bMessage=Invalid Quantity')
+    elif quantity > ticket.quantity:
+        return redirect('/?bMessage=Not Enough Tickets Left')
+    elif user.balance < cost:
+        return redirect('/?bMessage=Insufficient Funds')
+        
+    bn.buy_ticket(title, quantity, cost, user)
     return render_template('temp.html', message='Bought')
 
 
 @app.route('/update', methods=['POST'])
-def update_get():
+def update_post():
     title = request.form.get('upd-name')
     try:
         quantity = int(request.form.get('upd-quantity'))
         price = int(request.form.get('upd-price'))
         expDate = int(request.form.get('upd-exp'))
     except:
-        return redirect('/?sMessage=Field Requires Integer')
+        return redirect('/?uMessage=Field Requires Integer')
 
     temp = str(expDate)
     expDateLen = len(temp)
@@ -296,36 +292,3 @@ def update_get():
     bn.update_ticket(title, quantity, price, expDate)
     return render_template('temp.html', message='Updated')
 
-
-
-
-# #unauthorized methods 
-
-
-# @app.route('/update', methods=['PUT', 'PATCH', 'HEAD', 'OPTIONS', 'DELETE'])
-# def update_error():
-#     return render_template('404.html'), 404
-
-    
-# @app.route('/buy', methods=['PUT', 'PATCH', 'HEAD', 'OPTIONS', 'DELETE'])
-# def buy_error():
-#     return render_template('404.html'), 404
-
-# @app.route('/sell', methods=['PUT', 'PATCH', 'HEAD', 'OPTIONS', 'DELETE'])
-# def sell_error():
-#     return render_template('404.html'), 404
-
-    
-# @app.route('/', methods=['PUT', 'PATCH', 'HEAD', 'OPTIONS', 'DELETE'])
-# def profile_error():
-#     return render_template('404.html'), 404
-
-    
-# @app.route('/register', methods=['PUT', 'PATCH', 'HEAD', 'OPTIONS', 'DELETE'])
-# def register_error():
-#     return render_template('404.html'), 404
-
-    
-# @app.route('/login', methods=['PUT', 'PATCH', 'HEAD', 'OPTIONS', 'DELETE'])
-# def login_error():
-#    return render_template('404.html'), 404

@@ -85,6 +85,15 @@ def update_ticket(title, quantity, price, expDate):
     db.session.commit()
     return None
 
+def buy_ticket(title, quantity, cost, user):
+    t = get_ticket(title)
+    user.balance = user.balance - cost
+    t.quantity = t.quantity - quantity
+    if t.quantity < 1:
+        db.session.delete(t)
+    db.session.commit()
+    return None
+
 
 def get_all_tickets():
     tickets = Ticket.query.all()
