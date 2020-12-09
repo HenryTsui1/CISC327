@@ -115,7 +115,7 @@ def login_post():
         if the client has already login in the following sessions.
 
         """
-        # success! go back to the x page
+        # success! go back to the home page
         # code 303 is to force a 'GET' request
         return redirect('/', code=303)
     else:
@@ -190,7 +190,6 @@ def profile(user):
         u = ''
     return render_template('index.html', user=user, tickets=tickets, sMessage =s, bMessage =b, uMessage =u)
 
-
 @app.errorhandler(404)
 def page_not_found(e):
     # If the url does not met any of the existing
@@ -211,6 +210,9 @@ def sell_post():
         return redirect('/?sMessage=Field Requires Integer')
 
 
+
+
+
     temp = str(expDate)
     expDateLen = len(temp)
 
@@ -225,9 +227,11 @@ def sell_post():
         return redirect('/?sMessage=Invalid Date Format (YYYYMMDD)')
 
 
+
+
+
     bn.create_ticket(title, quantity, price, expDate)
     return render_template('temp.html', message='Sold')
-
 
 @app.route('/buy', methods=['POST'])
 def buy_post():
@@ -260,7 +264,6 @@ def buy_post():
         
     bn.buy_ticket(title, quantity, cost, user)
     return render_template('temp.html', message='Bought')
-
 
 @app.route('/update', methods=['POST'])
 def update_post():
