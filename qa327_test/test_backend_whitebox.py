@@ -28,7 +28,7 @@ class BackendTest(BaseCase):
         self.type("#sell-name", "TestTest")
         self.type("#sell-quantity", "15")
         self.type("#sell-price", "15")
-        self.type("#sell-exp", "12345678")
+        self.type("#sell-exp", "12122020")
         self.click('input[id="sell-submit"]')
         self.click('input[type="submit"]')
         self.assert_element("#tickets")
