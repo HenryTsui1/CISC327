@@ -53,9 +53,29 @@ def create_ticket(title, quantity, price, expDate):
     db.session.commit()
     return None
 
+
+def buy_ticket(title, quantity, price, expDate):
+    p_t = get_ticket(title)
+    p_t.quantity = quantity
+    p_t.price = price
+    p_t.expDate = expDate
+    if(p_t.quantity == 0):
+        db.session.delete(p_t) #deletes the ticket from the database if quantity is 0
+    db.session.commit()
+    return None
+
+
+def get_balance(balance):
+    user_balance = User.query.filter_by(balance=balance).first()
+    return user_balance
+
 def get_ticket(title):
     ticket = Ticket.query.filter_by(title=title).first()
     return ticket
+
+def get_ticket_quantity(quantity):
+    ticket_quantity = Ticket.query.filter_by(quantity=quantity).first()
+    return ticket_quantity
 
 def update_ticket(title, quantity, price, expDate):
     t = get_ticket(title)
@@ -65,7 +85,7 @@ def update_ticket(title, quantity, price, expDate):
     db.session.commit()
     return None
 
-def buy_ticket(title, quantity, cost, user):
+def buy_ticket(title, quantity, cost, user, balance):
     t = get_ticket(title)
     user.balance = user.balance - cost
     t.quantity = t.quantity - quantity
