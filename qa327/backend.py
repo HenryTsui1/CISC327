@@ -85,7 +85,7 @@ def update_ticket(title, quantity, price, expDate):
     db.session.commit()
     return None
 
-def buy_ticket(title, quantity, cost, user):
+def buy_ticket(title, quantity, cost, user, balance):
     t = get_ticket(title)
     user.balance = user.balance - cost
     t.quantity = t.quantity - quantity
